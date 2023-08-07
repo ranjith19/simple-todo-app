@@ -28,7 +28,15 @@ export default {
         deadline: '',
         done: false,
       },
-      tasks: []
+      tasks: JSON.parse(localStorage.getItem('tasks')) || []
+    }
+  },
+  watch: {
+    tasks: {
+      handler() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+      },
+      deep: true
     }
   },
   methods: {
@@ -48,6 +56,7 @@ export default {
   }
 }
 </script>
+
 
 
 
