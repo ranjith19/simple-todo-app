@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Simple To-Do App</h1>
+    <h1>To-Do App</h1>
     <div>
       <input v-model="newTask.name" type="text" placeholder="New task" />
       <input v-model="newTask.deadline" type="date" placeholder="Deadline" />
