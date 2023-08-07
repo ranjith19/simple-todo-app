@@ -16,7 +16,7 @@
     <ul>
       <li v-for="(task, index) in tasks" :key="index">
         <span :class="{ done: task.done }"
-          >{{ task.name }} - {{ task.deadline }}</span
+          >{{ task.deadline }} -  {{ task.name }}</span
         >
         <button
           :class="!task.done ? 'mark-done-button' : 'unmark-as-done'"
