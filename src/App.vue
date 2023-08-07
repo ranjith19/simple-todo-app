@@ -18,8 +18,11 @@
         <span :class="{ done: task.done }"
           >{{ task.name }} - {{ task.deadline }}</span
         >
-        <button :class="!task.done?'mark-done-button':'unmark-as-done'" @click="markAsDone(index)">
-          {{!task.done? 'Done':'Not done'}}
+        <button
+          :class="!task.done ? 'mark-done-button' : 'unmark-as-done'"
+          @click="markAsDone(index)"
+        >
+          {{ !task.done ? "Done" : "Not done" }}
         </button>
         <button class="delete-button" @click="deleteTask(index)">Delete</button>
       </li>
@@ -57,6 +60,9 @@ export default {
   watch: {
     tasks: {
       handler() {
+        this.tasks.sort((a, b) => {
+          return new Date(a.deadline) - new Date(b.deadline);
+        });
         localStorage.setItem("tasks", JSON.stringify(this.tasks));
       },
       deep: true,
@@ -82,9 +88,9 @@ export default {
     markAllDone() {
       this.tasks.forEach((task) => (task.done = true));
     },
-    markAllNotDone(){
+    markAllNotDone() {
       this.tasks.forEach((task) => (task.done = false));
-    }
+    },
   },
 };
 </script>
@@ -197,7 +203,8 @@ input[type="date"] {
 .mark-all-button {
   background-color: #3498db;
 }
-.mark-all-not-done-button, .unmark-as-done {
+.mark-all-not-done-button,
+.unmark-as-done {
   background-color: yellow;
   color: black;
 }
